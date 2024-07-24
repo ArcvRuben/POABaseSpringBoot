@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -24,7 +25,10 @@ public class ActividadesCarrera implements Serializable {
     private String descripcion;
     private String responsable;
     private Date plazo;
-    private String entregable;
+
+    @Lob
+    private byte[] entregable;
+
     private Integer meta;
     private Double recFinIeta;
     private Double recFinAutogestion;
@@ -35,6 +39,7 @@ public class ActividadesCarrera implements Serializable {
     @OneToMany(mappedBy = "actividadesCarrera")
     private List<EvaluacionDetalleCarrera> evaluacionDetalleCarrera;
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -67,11 +72,11 @@ public class ActividadesCarrera implements Serializable {
         this.plazo = plazo;
     }
 
-    public String getEntregable() {
+    public byte[] getEntregable() {
         return entregable;
     }
 
-    public void setEntregable(String entregable) {
+    public void setEntregable(byte[] entregable) {
         this.entregable = entregable;
     }
 
