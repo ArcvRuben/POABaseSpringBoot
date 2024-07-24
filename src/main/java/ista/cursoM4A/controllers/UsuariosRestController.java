@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,5 +59,15 @@ public class UsuariosRestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         usuariosService.delete(id);
+    }
+    
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Usuarios usuario) {
+        Usuarios user = usuariosService.findByCorreoAndContrasena(usuario.getCorreo(), usuario.getContrasena());
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Email o contraseña incorrectos", HttpStatus.UNAUTHORIZED);
+        }
     }
 }

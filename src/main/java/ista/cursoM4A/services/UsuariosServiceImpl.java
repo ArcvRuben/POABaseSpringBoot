@@ -15,6 +15,12 @@ public class UsuariosServiceImpl implements IUsuariosService {
     @Autowired
     private IUsuariosDao usuariosDao;
     
+    
+    @Override
+    public Usuarios findByCorreoAndContrasena(String correo, String contrasena) {
+        return usuariosDao.findByCorreoAndContrasena(correo, contrasena);
+    }
+    
     @Override
     @Transactional(readOnly = true)
     public List<Usuarios> findAll() {

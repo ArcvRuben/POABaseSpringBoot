@@ -4,5 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import ista.cursoM4A.entity.Usuarios;
 
 public interface IUsuariosDao extends CrudRepository<Usuarios, Long> {
+    Usuarios findByCorreoAndContrasena(String correo, String contrasena);
 
 }

@@ -8,4 +8,7 @@ public interface IUsuariosService {
     public Usuarios save(Usuarios usuarios);
     public Usuarios findById(Long id);
     public void delete(Long id);
+    // Método para autenticar usuario por email y contraseña
+    Usuarios findByCorreoAndContrasena(String correo, String contrasena);
+
 }

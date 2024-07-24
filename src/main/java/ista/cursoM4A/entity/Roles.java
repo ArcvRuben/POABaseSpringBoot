@@ -3,6 +3,8 @@ package ista.cursoM4A.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +24,7 @@ public class Roles implements Serializable {
 
     private String nombre;
     private String descripcion;
-
+@JsonIgnore
     @OneToMany(mappedBy = "rol")
     private List<Usuarios> usuarios;
 
