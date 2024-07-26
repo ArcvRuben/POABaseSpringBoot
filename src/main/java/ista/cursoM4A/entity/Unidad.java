@@ -2,6 +2,9 @@ package ista.cursoM4A.entity;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,10 +25,10 @@ public class Unidad implements Serializable {
     private String nombre;
     private String coordinacion;
     private String director;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "unidad")
     private List<UsuUnidad> usuUnidades;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "unidad")
     private List<Proyecto> proyectos;
 
