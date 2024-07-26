@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ista.cursoM4A.entity.ObjetivosOperativosUnidad;
+import ista.cursoM4A.entity.Proyecto;
 import ista.cursoM4A.services.IObjetivosOperativosUnidadService;
+import ista.cursoM4A.services.IProyectoService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,6 +27,9 @@ public class ObjetivosOperativosUnidadRestController {
 
     @Autowired
     private IObjetivosOperativosUnidadService objetivosOperativosUnidadService;
+
+    @Autowired
+    private IProyectoService proyectoService;
 
     @GetMapping("/objetivosOperativosUnidad")
     public List<ObjetivosOperativosUnidad> index() {
@@ -39,6 +44,17 @@ public class ObjetivosOperativosUnidadRestController {
     @PostMapping("/objetivosOperativosUnidad")
     @ResponseStatus(HttpStatus.CREATED)
     public ObjetivosOperativosUnidad create(@RequestBody ObjetivosOperativosUnidad objetivosOperativosUnidad) {
+        Proyecto proyecto = objetivosOperativosUnidad.getProyecto();
+        if (proyecto == null || proyecto.getIdProyecto() == null) {
+            throw new IllegalArgumentException("El proyecto o su id no pueden ser nulos.");
+        }
+
+        Proyecto proyectoExistente = proyectoService.findById(proyecto.getIdProyecto());
+        if (proyectoExistente == null) {
+            throw new IllegalArgumentException("Proyecto no encontrado");
+        }
+
+        objetivosOperativosUnidad.setProyecto(proyectoExistente);
         return objetivosOperativosUnidadService.save(objetivosOperativosUnidad);
     }
 
@@ -46,6 +62,10 @@ public class ObjetivosOperativosUnidadRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public ObjetivosOperativosUnidad update(@RequestBody ObjetivosOperativosUnidad objetivosOperativosUnidad, @PathVariable Long id) {
         ObjetivosOperativosUnidad objetivosOperativosUnidadActual = objetivosOperativosUnidadService.findById(id);
+        if (objetivosOperativosUnidadActual == null) {
+            throw new IllegalArgumentException("Objetivo Operativo no encontrado");
+        }
+        
         objetivosOperativosUnidadActual.setDescripcion(objetivosOperativosUnidad.getDescripcion());
         return objetivosOperativosUnidadService.save(objetivosOperativosUnidadActual);
     }
