@@ -3,6 +3,8 @@ package ista.cursoM4A.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,9 +26,11 @@ public class Carrera implements Serializable {
     private String coordinacion;
     private String periodo;
     private String director;
+    @JsonIgnore
 
     @OneToMany(mappedBy = "carrera")
     private List<UsuCarrera> usuCarreras;
+    @JsonIgnore
 
     @OneToMany(mappedBy = "carrera")
     private List<Estrategia> estrategias;
