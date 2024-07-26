@@ -46,7 +46,8 @@ public class ProyectoRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public Proyecto update(@RequestBody Proyecto proyecto, @PathVariable Long id) {
         Proyecto proyectoActual = proyectoService.findById(id);
-        proyectoActual.setDescripcion(proyecto.getDescripcion());
+        proyectoActual.setObjetivo_estrategico(proyecto.getObjetivo_estrategico());
+        proyectoActual.setEstrategia(proyecto.getEstrategia());
         return proyectoService.save(proyectoActual);
     }
 

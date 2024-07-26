@@ -20,7 +20,8 @@ public class Proyecto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProyecto;
 
-    private String descripcion;
+    private String objetivo_estrategico;
+    private String Estrategia;
 
     @ManyToOne
     private Unidad unidad;
@@ -36,15 +37,23 @@ public class Proyecto implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public String getObjetivo_estrategico() {
+		return objetivo_estrategico;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setObjetivo_estrategico(String objetivo_estrategico) {
+		this.objetivo_estrategico = objetivo_estrategico;
+	}
 
-    public Unidad getUnidad() {
+	public String getEstrategia() {
+		return Estrategia;
+	}
+
+	public void setEstrategia(String estrategia) {
+		Estrategia = estrategia;
+	}
+
+	public Unidad getUnidad() {
         return unidad;
     }
 

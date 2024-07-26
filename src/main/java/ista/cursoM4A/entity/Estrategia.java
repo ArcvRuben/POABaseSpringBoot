@@ -21,7 +21,8 @@ public class Estrategia implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String descripcion;
+    private String objetivo_estrategico;
+    private String estrategia;
 
     @ManyToOne
     private Carrera carrera;
@@ -40,15 +41,23 @@ public class Estrategia implements Serializable {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public String getObjetivo_estrategico() {
+		return objetivo_estrategico;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setObjetivo_estrategico(String objetivo_estrategico) {
+		this.objetivo_estrategico = objetivo_estrategico;
+	}
 
-    public Carrera getCarrera() {
+	public String getEstrategia() {
+		return estrategia;
+	}
+
+	public void setEstrategia(String estrategia) {
+		this.estrategia = estrategia;
+	}
+
+	public Carrera getCarrera() {
         return carrera;
     }
 

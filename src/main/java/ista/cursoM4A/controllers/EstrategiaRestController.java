@@ -46,7 +46,8 @@ public class EstrategiaRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public Estrategia update(@RequestBody Estrategia estrategia, @PathVariable Long id) {
         Estrategia estrategiaActual = estrategiaService.findById(id);
-        estrategiaActual.setDescripcion(estrategia.getDescripcion());
+        estrategiaActual.setObjetivo_estrategico(estrategia.getObjetivo_estrategico());
+        estrategiaActual.setEstrategia(estrategia.getEstrategia());
         return estrategiaService.save(estrategiaActual);
     }
 
